@@ -106,7 +106,7 @@ Você verá a interface web com imagens dos produtos, recomendados pelo modelo.
 ---
 
 ## Estrutura dos arquivos
-
+```
 /
 ├── app.py                    # API Flask
 ├── build_graph.py            # Script para construir o grafo
@@ -123,4 +123,4 @@ Você verá a interface web com imagens dos produtos, recomendados pelo modelo.
     ├── css/
     │   └── style.css         # CSS para estilizar a página
     └── images/               # Imagens dos produtos (agora servidas corretamente pelo Flask)
-
+```
