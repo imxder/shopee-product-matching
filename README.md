@@ -45,7 +45,7 @@ pip install -r requirements.txt
 
 ## 2. Baixe as imagens.
 
-- Execute o codigo de `baixar_iamgens.py`.
+- Execute o codigo de `baixar_imagens.py`.
 
 ```bash
 python baixar_imagens.py
