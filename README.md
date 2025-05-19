@@ -43,13 +43,13 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## 2. Preparar os dados
+## 2. Baixe as imagens.
 
-- Coloque seu arquivo `train.csv` na raiz do projeto.
-- Esse arquivo deve conter as colunas necessárias para construir o grafo, especialmente a coluna `image` com os nomes das imagens (formato JPG/PNG).
-- Organize as imagens na pasta `/images` (ou ajuste o caminho no código conforme necessário).
+- Execute o codigo de `baixar_iamgens.py`.
 
----
+```bash
+python baixar_imagens.py
+```
 
 ## 3. Construir o grafo
 
