@@ -1,0 +1,11 @@
+sentence-transformers
+pandas
+tqdm
+torch
+torchvision
+pillow
+torch-geometric
+scikit-learn
+networkx
+matplotlib
+flask
