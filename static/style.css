@@ -1,0 +1,114 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #f5f7fa;
+    color: #333;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    background: white;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.form-produto {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.form-produto input[type="number"] {
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #3498db;
+    border-radius: 6px;
+    width: 120px;
+    transition: border-color 0.3s ease;
+}
+
+.form-produto input[type="number"]:focus {
+    outline: none;
+    border-color: #2980b9;
+}
+
+.form-produto button {
+    background-color: #3498db;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.form-produto button:hover {
+    background-color: #2980b9;
+}
+
+.produto-principal,
+.produtos-recomendados {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.produto-principal img,
+.produto-card img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background-color: #fafafa;
+}
+
+.titulo-produto {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #34495e;
+    margin-bottom: 6px;
+}
+
+.similaridade {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+.produtos-recomendados .lista-produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+    justify-items: center;
+}
+
+.produto-card {
+    background: #f0f3f7;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.produto-card:hover {
+    transform: scale(1.05);
+}
