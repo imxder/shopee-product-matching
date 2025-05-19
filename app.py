@@ -6,16 +6,13 @@ import os
 
 app = Flask(__name__)
 
-# Carregamento dos dados
 df = pd.read_csv("train.csv")
 embeddings = np.load("gnn_embeddings.npy")
 
-# Rota para servir imagens
 @app.route('/images/<path:filename>')
 def serve_images(filename):
     return send_from_directory('static/images', filename)
 
-# Página principal
 @app.route("/", methods=["GET", "POST"])
 def index():
     recomendados = []

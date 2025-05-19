@@ -4,7 +4,7 @@ from torch_geometric.data import Data
 from sklearn.neighbors import NearestNeighbors
 from sklearn.preprocessing import normalize
 
-print("🔄 Carregando embeddings...")
+print("Carregando embeddings")
 text_emb = np.load('text_embeddings.npy')
 img_emb = np.load('image_embeddings.npy')
 
