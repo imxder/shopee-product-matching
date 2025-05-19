@@ -17,8 +17,8 @@ Este projeto constrói um grafo de produtos utilizando PyTorch Geometric, treina
 ### Passo 1: Clone o repositório
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
-cd <PASTA_DO_REPOSITORIO>
+git clone https://github.com/imxder/shopee-product-matching
+cd shopee-product-matching
 ```
 
 ### Passo 2: Crie e ative o ambiente virtual
