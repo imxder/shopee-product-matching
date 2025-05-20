@@ -51,25 +51,42 @@ pip install -r requirements.txt
 python baixar_imagens.py
 ```
 
-## 3. Construir o grafo
+Este script deve:
 
-Execute o script responsável pela construção do grafo. Por exemplo:
+- Baixar a pasta de imagens do Google Drive descomprimir.
+- Descomprimir pasta `images.zip`.
+- Salvar as imagens em: `static/images`
+
+## 3. Gerar embeddings de texto e imagem.
+
+Execute o script responsável por gerar os embeddings:
 
 ```bash
-python build_graph.py
+python gerar_embeddings.py
 ```
 
 Este script deve:
 
-- Carregar os dados do CSV
 - Criar o grafo de produtos com arestas baseadas em similaridades (ou regras definidas)
-- Salvar o grafo em `produto_grafo.pt`
+- Salvar os embeddings em `text_embeddings.npy` e `image_embeddings.npy`
 
-*(Se não tiver o script, posso ajudar a criar.)*
+## 4. Construir o grafo
+
+Execute o script responsável pela construção do grafo. Por exemplo:
+
+```bash
+python construir_grafo.py
+```
+
+Este script deve:
+
+- Carregar os dados do CSV.
+- Criar o grafo de produtos com arestas baseadas em similaridades.
+- Salvar o grafo em `produto_grafo.pt`.
 
 ---
 
-## 4. Treinar o modelo LightSAGE
+## 5. Treinar o modelo LightSAGE
 
 Execute o treinamento do modelo:
 
@@ -79,15 +96,15 @@ python train_lightSAGE.py
 
 O que este script faz:
 
-- Carrega o grafo salvo em `produto_grafo.pt`
-- Treina o modelo LightSAGE com loss contrastiva (com batch e validação)
-- Salva os embeddings resultantes em `gnn_embeddings.npy`
+- Carrega o grafo salvo em `produto_grafo.pt`.
+- Treina o modelo LightSAGE.
+- Salva os embeddings resultantes em `gnn_embeddings.npy`.
 
 > Ajuste parâmetros como batch size, número de épocas, e taxa de aprendizado no código conforme seu hardware.
 
 ---
 
-## 5. Rodar a API Flask
+## 6. Rodar a API Flask
 
 Para iniciar a API Flask que exibe os produtos e recomendações:
 
@@ -121,6 +138,6 @@ Você verá a interface web com imagens dos produtos, recomendados pelo modelo.
 │   └── index.html
 └── static/
     ├── css/
-    │   └── style.css         # CSS para estilizar a página
-    └── images/               # Imagens dos produtos (agora servidas corretamente pelo Flask)
+    │   └── style.css         # CSS 
+    └── images/               # Imagens dos produtos 
 ```
