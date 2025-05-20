@@ -37,7 +37,7 @@ transform = transforms.Compose([
                          std=[0.229, 0.224, 0.225])
 ])
 
-image_dir = "train_images"
+image_dir = "static/images"
 image_embeddings = []
 
 for img_name in tqdm(df['image']):
