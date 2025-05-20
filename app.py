@@ -27,7 +27,7 @@ def index():
             produto = df.iloc[idx].to_dict()
 
             sim = cosine_similarity([embeddings[idx]], embeddings)[0]
-            top_indices = sim.argsort()[::-1][1:6]
+            top_indices = sim.argsort()[::-1][1:9]
             recomendados = []
             for i in top_indices:
                 rec = df.iloc[i].to_dict()
