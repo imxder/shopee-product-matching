@@ -93,7 +93,7 @@ Este script deve:
 - Criar o grafo de produtos com arestas baseadas em similaridades (ou regras definidas)
 - Salvar os embeddings em `text_embeddings.npy` e `image_embeddings.npy`
 
-## 5. Construir o grafo
+## 5. Gerar o grafo
 
 Execute o script responsável pela construção do grafo. Por exemplo:
 
