@@ -16,7 +16,7 @@ IMAGE_EMBEDDINGS_FILE = 'image_embeddings.npy'
 GNN_EMBEDDINGS_FILE = 'gnn_embeddings.npy'
 IMAGE_IDS_FILE = 'image_ids.npy'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-N_NEIGHBORS = 6 
+N_NEIGHBORS = 9 
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -150,7 +150,7 @@ def upload_search():
             if recomendados and recomendados[0]['similaridade'] > 0.999:
                  recomendados.pop(0)
 
-            return render_template('index.html', max_index=max_index, produto=produto, recomendados=recomendados[:5])
+            return render_template('index.html', max_index=max_index, produto=produto, recomendados=recomendados[:8])
         else:
             return render_template('index.html', max_index=max_index, error_message="Erro ao processar a imagem.")
     else:
