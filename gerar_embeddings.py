@@ -7,7 +7,7 @@ from sentence_transformers import SentenceTransformer
 
 print("[1/2] Gerando embeddings de texto...")
 
-df = pd.read_csv("train.csv")
+df = pd.read_csv("train.csv") #
 
 text_model = SentenceTransformer('all-MiniLM-L6-v2')
 
@@ -22,15 +22,18 @@ print("\n[2/2] Gerando embeddings de imagem...")
 
 import torch
 import torchvision.transforms as transforms
-from torchvision.models import resnet50
+from torchvision.models import resnet50, ResNet50_Weights
 from PIL import Image
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+print(f"Usando dispositivo para imagens: {device}")
 
-img_model = resnet50(pretrained=True)
-img_model = torch.nn.Sequential(*list(img_model.children())[:-1])  
+img_model = resnet50(weights=ResNet50_Weights.IMAGENET1K_V1) 
+img_model = torch.nn.Sequential(*list(img_model.children())[:-1]) 
+img_model.to(device) 
+img_model.eval()     
 
-transform = transforms.Compose([
+transform = transforms.Compose([ 
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.485, 0.456, 0.406],
@@ -39,6 +42,7 @@ transform = transforms.Compose([
 
 image_dir = "static/images"
 image_embeddings = []
+error_count = 0 
 
 for img_name in tqdm(df['image']):
     img_path = os.path.join(image_dir, img_name)
@@ -51,8 +55,11 @@ for img_name in tqdm(df['image']):
             image_embeddings.append(features)
     except Exception as e:
         print(f"Erro ao processar {img_name}: {e}")
-        image_embeddings.append(np.zeros(2048))  # padding se erro
+        image_embeddings.append(np.zeros(2048))
+        error_count += 1 
 
 image_embeddings = np.vstack(image_embeddings)
 np.save("image_embeddings.npy", image_embeddings)
+np.save("image_ids.npy", df['image'].values)
 print("Embeddings de imagem salvos como 'image_embeddings.npy'")
+print(f"Número de erros ao carregar imagens: {error_count}") 

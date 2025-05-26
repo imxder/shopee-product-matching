@@ -8,31 +8,62 @@
 </head>
 <body>
     <div class="container">
-        <h1>Recomendação de Produtos</h1>
-        <form method="POST" class="form-produto">
-            <label for="produto_idx">Digite o índice do produto para recomendar (0 a {{ max_index }}):</label>
-            <input type="number" id="produto_idx" name="produto_idx" min="0" max="{{ max_index }}" required />
-            <button type="submit">Buscar</button>
-        </form>
+        <h1>Recomendação de Produtos Shopee</h1>
+
+        {% if error_message %}
+            <div class="flash" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 15px; margin-bottom: 20px; border-radius: 6px; text-align: center;">
+                <p>{{ error_message }}</p>
+            </div>
+        {% endif %}
+
+        <div class="forms-container">
+            <div class="form-box">
+                <h2>Buscar por Índice</h2>
+                <form action="{{ url_for('index_search') }}" method="POST" class="form-produto">
+                    <label for="produto_idx">Digite o índice (0 a {{ max_index }}):</label>
+                    <input type="number" id="produto_idx" name="produto_idx" min="0" max="{{ max_index }}" required />
+                    <button type="submit">Buscar por Índice</button>
+                </form>
+            </div>
+
+            <div class="form-box">
+                <h2>Buscar por Imagem</h2>
+                <form action="{{ url_for('upload_search') }}" method="POST" enctype="multipart/form-data" class="form-upload">
+                    <label for="query_image">Carregue uma imagem:</label>
+                    <input type="file" id="query_image" name="query_image" accept="image/*" required />
+                    <button type="submit">Buscar por Imagem</button>
+                </form>
+            </div>
+        </div>
+
+        <hr>
 
         {% if produto %}
         <div class="produto-principal">
-            <h2>Produto Selecionado:</h2>
-            <img src="{{ url_for('serve_images', filename=produto['image']) }}" alt="Imagem do produto" />
-            <p class="titulo-produto">{{ produto['title'] }}</p>
+            <h2>{% if produto.is_upload %}Sua Imagem Carregada{% else %}Produto Selecionado{% endif %}:</h2>
+            {% if produto.is_upload %}
+                <img src="{{ url_for('serve_uploads', filename=produto.image) }}" alt="Imagem carregada" />
+            {% else %}
+                <img src="{{ url_for('serve_images', filename=produto.image) }}" alt="Imagem do produto" />
+            {% endif %}
+            <p class="titulo-produto">{{ produto.title }}</p>
         </div>
 
         <div class="produtos-recomendados">
-            <h2>Produtos Recomendados:</h2>
-            <div class="lista-produtos">
-                {% for rec in recomendados %}
-                <div class="produto-card">
-                    <img src="{{ url_for('serve_images', filename=rec['image']) }}" alt="Imagem produto recomendado" />
-                    <p class="titulo-produto">{{ rec['title'] }}</p>
-                    <p class="similaridade">Similaridade: {{ '%.4f'|format(rec['similaridade']) }}</p>
+             <h2>Produtos Recomendados (Busca {{ produto.search_type }}):</h2>
+            {% if recomendados %}
+                <div class="lista-produtos">
+                    {% for rec in recomendados %}
+                    <div class="produto-card">
+                        <img src="{{ url_for('serve_images', filename=rec.image) }}" alt="Imagem produto recomendado" />
+                        <p class="titulo-produto">{{ rec.title }}</p>
+                        <p class="similaridade">Similaridade: {{ '%.4f'|format(rec.similaridade) }}</p>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
-            </div>
+            {% else %}
+                <p>Nenhum produto similar encontrado.</p>
+            {% endif %}
         </div>
         {% endif %}
     </div>
