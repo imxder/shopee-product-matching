@@ -42,9 +42,11 @@ source .venv/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
-- Caso tenha placa de video e queira utilizar para treinar os modelos execute o código abaixo: Download de +/- 2GB
-- `pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118`
- 
+- Caso tenha placa de video e queira utilizar para treinar os modelos execute o código abaixo:
+ ```bash
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+```
+-  Download de +/- 2GB!
 
 ## 2. Baixe as imagens.
 
